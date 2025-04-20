@@ -1,4 +1,4 @@
-# Av. Emre Okur - Hukuk Bürosu Web Sitesi
+# Bireysel bir avukat için - Hukuk Bürosu Web Sitesi
 
 Av. Emre Okur'un profesyonel hukuk bürosu web sitesi için geliştirilen React projesi.
 
@@ -25,7 +25,7 @@ Projeyi lokal olarak çalıştırmak için aşağıdaki adımları izleyin:
 
 ```bash
 # Projeyi klonlayın
-git clone https://github.com/[KULLANICI_ADI]/emre-okur-frontend.git
+git clone https://github.com/VedatYalcinkaya/emre-okur-frontend.git
 
 # Proje dizinine girin
 cd emre-okur-frontend
