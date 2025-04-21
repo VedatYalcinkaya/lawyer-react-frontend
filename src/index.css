@@ -1,8 +1,26 @@
 @import "tailwindcss";
 
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 @theme inline {
-  /* Aceternity UI için tema değişkenlerin */
+  /* Genel tema değişkenleri */
   --font-display: "Inter", sans-serif;
-  --color-primary-500: oklch(0.84 0.18 117.33);
   --spacing: 0.25rem;
+  
+  /* Renk Paleti - Mavi Tonları */
+  --color-koyu-mavi: #03045E;
+  --color-mavi: #0077B6;
+  --color-turkuaz: #00B4D8;
+  --color-acik-mavi: #90E0EF;
+  --color-cok-acik-mavi: #CAF0F8;
+  
+  /* Diğer renkler */
+  --color-primary: #3490dc;
+  --color-secondary: #ffed4a;
+  --color-danger: #e3342f;
 }

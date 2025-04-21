@@ -7,4 +7,5 @@ export default defineConfig({
     react(),
     tailwindcss(),        // ← Tailwind v4 için Vite plugin
   ],
+  
 })

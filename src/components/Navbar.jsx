@@ -1,16 +1,53 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/react.svg";
-import { Link } from "react-router-dom";
-import { maviPaleti } from "../utils/colorPalette";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const [legalContents, setLegalContents] = useState([
     { id: 1, title: "Aile Hukuku" },
     { id: 2, title: "Ceza Hukuku" },
     { id: 3, title: "İş Hukuku" },
     { id: 4, title: "Tazminat Hukuku" }
   ]);
+
+  // Hakkımızda linkine tıklandığında yapılacak işlem
+  const scrollToAboutSection = (e) => {
+    e.preventDefault(); // Default link davranışını engelle
+    
+    // Eğer zaten anasayfadaysak, sadece scroll et
+    if (location.pathname === '/') {
+      const aboutSection = document.getElementById('hakkimda');
+      if (aboutSection) {
+        // Navbar yüksekliğini hesaba katarak scroll et (navbar + ekstra padding için)
+        const navbarHeight = 100; // yaklaşık navbar yüksekliği
+        const aboutSectionTop = aboutSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        
+        window.scrollTo({
+          top: aboutSectionTop,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      // Başka sayfadaysak, anasayfaya yönlendir ve sonra scroll et
+      navigate('/');
+      // Sayfa geçişinden sonra scroll işlemi için timeout kullan
+      setTimeout(() => {
+        const aboutSection = document.getElementById('hakkimda');
+        if (aboutSection) {
+          const navbarHeight = 100; // yaklaşık navbar yüksekliği
+          const aboutSectionTop = aboutSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: aboutSectionTop,
+            behavior: 'smooth'
+          });
+        }
+      }, 300); // Sayfa geçişi için biraz daha uzun süre
+    }
+  };
 
   useEffect(() => {
     const burger = document.querySelectorAll(".navbar-burger");
@@ -52,7 +89,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full">
-      <nav style={{backgroundColor: maviPaleti.koyuMavi}} className="flex-no-wrap fixed top-0 left-0 right-0 z-20 flex w-full items-center justify-start backdrop-filter backdrop-blur-xl">
+      <nav className="flex-no-wrap fixed top-0 left-0 right-0 z-20 flex w-full items-center justify-start backdrop-filter backdrop-blur-xl bg-koyu-mavi">
         <div className="flex justify-between items-center w-full px-3 sm:px-6 lg:px-8">
           {/* Logo ve Başlık */}
           <div className="flex items-center space-x-4">
@@ -62,7 +99,7 @@ const Navbar = () => {
               alt="Av. Emre Okur Logo"
             />
             <div className="flex flex-col text-center">
-              <span style={{color: maviPaleti.cokAcikMavi}} className="text-2xl font-josefin font-bold">
+              <span className="text-2xl font-josefin font-bold text-cok-acik-mavi">
                 Av. Emre Okur
               </span>
             </div>
@@ -72,19 +109,14 @@ const Navbar = () => {
           <div className="hidden lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-8">
             <Link
               to="/"
-              style={{color: maviPaleti.acikMavi}}
-              className="block text-xl text-center font-josefin font-bold hover:scale-125 transition-transform duration-300 ease-in-out"
-              onMouseOver={(e) => e.target.style.color = maviPaleti.cokAcikMavi}
-              onMouseOut={(e) => e.target.style.color = maviPaleti.acikMavi}
+              className="block text-xl text-center font-josefin font-bold text-acik-mavi hover:text-cok-acik-mavi hover:scale-125 transition-transform duration-300 ease-in-out"
             >
               Ana Sayfa
             </Link>
             <Link
-              to="hakkimizda"
-              style={{color: maviPaleti.acikMavi}}
-              className="block text-xl font-josefin font-bold hover:scale-125 transition-transform duration-300 ease-in-out"
-              onMouseOver={(e) => e.target.style.color = maviPaleti.cokAcikMavi}
-              onMouseOut={(e) => e.target.style.color = maviPaleti.acikMavi}
+              to="/"
+              onClick={scrollToAboutSection}
+              className="block text-xl font-josefin font-bold text-acik-mavi hover:text-cok-acik-mavi hover:scale-125 transition-transform duration-300 ease-in-out"
             >
               Hakkımızda
             </Link>
@@ -94,10 +126,7 @@ const Navbar = () => {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button 
-                style={{color: maviPaleti.acikMavi}}
-                className="block text-xl font-josefin font-bold hover:scale-125 transition-transform duration-300 ease-in-out"
-                onMouseOver={(e) => e.target.style.color = maviPaleti.cokAcikMavi}
-                onMouseOut={(e) => e.target.style.color = maviPaleti.acikMavi}
+                className="block text-xl font-josefin font-bold text-acik-mavi hover:text-cok-acik-mavi hover:scale-125 transition-transform duration-300 ease-in-out"
               >
                 Çalışma Alanlarımız
               </button>
@@ -111,8 +140,7 @@ const Navbar = () => {
                     <li key={content.id}>
                       <Link
                         to={`/calisma-alani/${content.id}`}
-                        style={{color: maviPaleti.mavi}}
-                        className="block px-4 py-2 hover:bg-gray-200"
+                        className="block px-4 py-2 hover:bg-gray-200 text-mavi"
                       >
                         {content.title}
                       </Link>
@@ -123,19 +151,13 @@ const Navbar = () => {
             </div>
             <Link
               to="/makaleler"
-              style={{color: maviPaleti.acikMavi}}
-              className="block text-xl font-josefin font-bold hover:scale-125 transition-transform duration-300 ease-in-out"
-              onMouseOver={(e) => e.target.style.color = maviPaleti.cokAcikMavi}
-              onMouseOut={(e) => e.target.style.color = maviPaleti.acikMavi}
+              className="block text-xl font-josefin font-bold text-acik-mavi hover:text-cok-acik-mavi hover:scale-125 transition-transform duration-300 ease-in-out"
             >
               Makaleler
             </Link>
             <Link
               to="/iletisim"
-              style={{color: maviPaleti.acikMavi}}
-              className="block text-xl font-josefin font-bold hover:scale-125 transition-transform duration-300 ease-in-out"
-              onMouseOver={(e) => e.target.style.color = maviPaleti.cokAcikMavi}
-              onMouseOut={(e) => e.target.style.color = maviPaleti.acikMavi}
+              className="block text-xl font-josefin font-bold text-acik-mavi hover:text-cok-acik-mavi hover:scale-125 transition-transform duration-300 ease-in-out"
             >
               İletişim
             </Link>
@@ -144,7 +166,7 @@ const Navbar = () => {
           {/* Hamburger Menüsü */}
           <div className="flex flex-col items-end space-y-2">
             <button className="relative group navbar-burger lg:hidden">
-              <div style={{backgroundColor: maviPaleti.mavi}} className="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all ring-0 ring-gray-300 hover:scale-125 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md">
+              <div className="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all ring-0 ring-gray-300 hover:scale-125 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md bg-mavi">
                 <div className="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-500 origin-center overflow-hidden group-focus:-rotate-180">
                   <div className="bg-white h-[2px] w-7 transform transition-all duration-500 group-focus:rotate-45 -translate-x-1"></div>
                   <div className="bg-white h-[2px] w-7 rounded transform transition-all duration-500 "></div>
@@ -198,7 +220,8 @@ const Navbar = () => {
               <li className="mb-1">
                 <Link
                   className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  to="hakkimizda"
+                  to="/"
+                  onClick={scrollToAboutSection}
                 >
                   Hakkımızda
                 </Link>
