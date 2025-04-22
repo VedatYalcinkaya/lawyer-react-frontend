@@ -1,12 +1,25 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import ContactPage from './pages/ContactPage'
 import WorkAreaPage from './pages/WorkAreaPage'
+import FamilyLawPage from './pages/FamilyLawPage'
+import CriminalLawPage from './pages/CriminalLawPage'
+import MalRejimiLawPage from './pages/MalRejimiLawPage'
+import KiraLawPage from './pages/KiraLawPage'
+import MirasLawPage from './pages/MirasLawPage'
+import IcraIflasLawPage from './pages/IcraIflasLawPage'
 import Navbar from './components/Navbar'
 import { FlipWordsDemo } from './components/FlipWordsDemo'
 
 const Dashboard = () => {
+  const location = useLocation();
+  
+  // Sayfa değiştiğinde en üste kaydır
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  
   return (
     <div className="w-full min-h-screen flex flex-col overflow-x-hidden">
       {/* Açık/beyaz arkaplan */}
@@ -32,7 +45,12 @@ const Dashboard = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="ui-try" element={<FlipWordsDemo />} />
             <Route path="/hakkimizda" element={<div className="py-8">Hakkımızda Sayfası</div>} />
-            <Route path="/calisma-alani/:id" element={<WorkAreaPage />} />
+            <Route path="/aile-hukuku" element={<FamilyLawPage />} />
+            <Route path="/ceza-hukuku" element={<CriminalLawPage />} />
+            <Route path="/mal-rejimi-hukuku" element={<MalRejimiLawPage />} />
+            <Route path="/kira-hukuku" element={<KiraLawPage />} />
+            <Route path="/miras-hukuku" element={<MirasLawPage />} />
+            <Route path="/icra-iflas-hukuku" element={<IcraIflasLawPage />} />
             <Route path="/makaleler" element={<div className="py-8">Makaleler Sayfası</div>} />
             <Route path="/iletisim" element={<ContactPage />} />
           </Routes>

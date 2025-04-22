@@ -1,91 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { FlipWords } from "./ui/flip-words";
 import AvLogo from "../assets/logos/av-logo.svg";
+import { FaUsers, FaBalanceScale, FaHandHoldingUsd, FaKey, FaBook, FaGavel, FaArrowRight, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import ContactModal from "./ContactModal";
 
 const Hero = () => {
+  const [showModal, setShowModal] = useState(false);
+  
+  // Hakkımda bölümüne scroll işlemi
+  const scrollToHakkimda = () => {
+    const hakkimdaElement = document.getElementById('hakkimda');
+    if (hakkimdaElement) {
+      hakkimdaElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   // FlipWords için uzmanlık alanları
-  const uzmanlikFlip = ["Aile", "Ceza", "Ticaret", "İş", "Miras", "Gayrimenkul"];
+  const uzmanlikFlip = ["Aile", "Ceza", "Mal Rejimi", "Kira", "Miras", "İcra ve İflas"];
   
   // Uzmanlık alanları
   const uzmanlikAlanlari = [
     { 
       baslik: "Aile Hukuku", 
       aciklama: "Boşanma, velayet, nafaka ve evlilik konularında uzman destek",
-      icon: (
-        <svg className="w-10 h-10 mb-4 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-          <path d="M12 14C14.2091 14 16 12.2091 16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10C8 12.2091 9.79086 14 12 14Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7 22C7 19.2386 9.23858 17 12 17C14.7614 17 17 19.2386 17 22" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M19 14C19.8284 14 20.5 13.3284 20.5 12.5C20.5 11.6716 19.8284 11 19 11" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M16 2.5C16 3.32843 16.6716 4 17.5 4C18.3284 4 19 3.32843 19 2.5C19 1.67157 18.3284 1 17.5 1C16.6716 1 16 1.67157 16 2.5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M22 8.5C22 9.32843 21.3284 10 20.5 10C19.6716 10 19 9.32843 19 8.5C19 7.67157 19.6716 7 20.5 7C21.3284 7 22 7.67157 22 8.5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M5 14C4.17157 14 3.5 13.3284 3.5 12.5C3.5 11.6716 4.17157 11 5 11" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M5 2.5C5 3.32843 4.32843 4 3.5 4C2.67157 4 2 3.32843 2 2.5C2 1.67157 2.67157 1 3.5 1C4.32843 1 5 1.67157 5 2.5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 8.5C2 9.32843 2.67157 10 3.5 10C4.32843 10 5 9.32843 5 8.5C5 7.67157 4.32843 7 3.5 7C2.67157 7 2 7.67157 2 8.5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )
+      icon: <FaUsers className="w-10 h-10 mb-4 text-blue-600" />,
+      link: "/aile-hukuku"
     },
     { 
       baslik: "Ceza Hukuku", 
       aciklama: "Savunma, dava takibi ve adli süreçlerde profesyonel danışmanlık",
-      icon: (
-        <svg className="w-10 h-10 mb-4 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8.5 16L12 7L15.5 16" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M6 13H18" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )
+      icon: <FaBalanceScale className="w-10 h-10 mb-4 text-blue-600" />,
+      link: "/ceza-hukuku"
     },
     { 
-      baslik: "Ticaret Hukuku", 
-      aciklama: "Şirket kurulumu, ticari sözleşmeler ve fikri mülkiyet hizmetleri",
-      icon: (
-        <svg className="w-10 h-10 mb-4 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-          <path d="M16 16L22 22" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M19 14V6C19 4.89543 18.1046 4 17 4H5C3.89543 4 3 4.89543 3 6V18C3 19.1046 3.89543 20 5 20H14" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M3 8H19" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7 3V5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M15 3V5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )
+      baslik: "Mal Rejimi Hukuku", 
+      aciklama: "Edinilmiş mallara katılma ve mal paylaşımı konularında danışmanlık",
+      icon: <FaHandHoldingUsd className="w-10 h-10 mb-4 text-blue-600" />,
+      link: "/mal-rejimi-hukuku"
     },
     { 
-      baslik: "İş Hukuku", 
-      aciklama: "İşçi-işveren ilişkileri, tazminat davaları ve iş sözleşmeleri",
-      icon: (
-        <svg className="w-10 h-10 mb-4 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-          <path d="M20 7H4C3.44772 7 3 7.44772 3 8V20C3 20.5523 3.44772 21 4 21H20C20.5523 21 21 20.5523 21 20V8C21 7.44772 20.5523 7 20 7Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 7V3.5C8 3.22386 8.22386 3 8.5 3H15.5C15.7761 3 16 3.22386 16 3.5V7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M12 12V16" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M12 12H8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )
+      baslik: "Kira Hukuku", 
+      aciklama: "Kira sözleşmeleri, tahliye ve kira uyuşmazlıkları konularında destek",
+      icon: <FaKey className="w-10 h-10 mb-4 text-blue-600" />,
+      link: "/kira-hukuku"
     },
     { 
       baslik: "Miras Hukuku", 
       aciklama: "Vasiyetname, miras paylaşımı ve veraset konularında danışmanlık",
-      icon: (
-        <svg className="w-10 h-10 mb-4 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-          <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M10 2V22" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M10 12H22" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )
+      icon: <FaBook className="w-10 h-10 mb-4 text-blue-600" />,
+      link: "/miras-hukuku"
     },
     { 
-      baslik: "Gayrimenkul Hukuku", 
-      aciklama: "Tapu işlemleri, kat mülkiyeti ve gayrimenkul davalarında destek",
-      icon: (
-        <svg className="w-10 h-10 mb-4 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-          <path d="M19 8.71002L13.667 4.56202C13.199 4.19702 12.563 4.19702 12.095 4.56202L6.76196 8.71002C6.44496 8.95702 6.22796 9.42802 6.22796 9.82002V18.276C6.22796 19.175 6.94996 19.907 7.83996 19.907H17.922C18.812 19.907 19.534 19.175 19.534 18.276V9.82002C19.534 9.42902 19.317 8.95702 19 8.71002Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9.88098 15.407C11.1508 16.6583 13.0965 16.6323 14.336 15.348C15.5754 14.0637 15.5495 12.1181 14.2797 10.8785C13.01 9.63904 11.0643 9.66502 9.825 10.9348C9.59893 11.1657 9.40496 11.4268 9.24989 11.71" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )
+      baslik: "İcra ve İflas Hukuku", 
+      aciklama: "Borç takibi, haciz işlemleri ve icra süreçlerinde hukuki destek",
+      icon: <FaGavel className="w-10 h-10 mb-4 text-blue-600" />,
+      link: "/icra-iflas-hukuku"
     }
   ];
 
   return (
-    <div className="min-h-screen pt-25">
+    <div className="min-h-screen py-10">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
         {/* Sol Taraf - Metin İçeriği */}
         <div className="w-full lg:w-1/2 text-center lg:text-left">
@@ -135,11 +111,18 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
           >
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md transition-all duration-300 shadow-lg hover:shadow-blue-200 w-full sm:w-auto">
+            <button 
+              onClick={() => setShowModal(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md transition-all duration-300 shadow-lg hover:shadow-blue-200 w-full sm:w-auto"
+            >
               Randevu Al
             </button>
-            <button className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-md transition-all duration-300 w-full sm:w-auto">
-              Hizmetler
+            <button 
+              onClick={scrollToHakkimda}
+              className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-md transition-all duration-300 w-full sm:w-auto flex items-center justify-center"
+            >
+              <span>Hakkımda</span>
+              <FaUser className="ml-2 h-4 w-4" />
             </button>
           </motion.div>
         </div>
@@ -153,16 +136,35 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                className="bg-white shadow-lg p-6 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center border border-gray-100"
               >
-                {alan.icon}
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">{alan.baslik}</h3>
-                <p className="text-gray-600 text-sm">{alan.aciklama}</p>
+                <Link 
+                  to={alan.link}
+                  className="block bg-white shadow-lg p-6 rounded-xl transition-all duration-300 flex flex-col items-center text-center border border-gray-100 h-full relative group overflow-hidden hover:shadow-xl hover:border-blue-200"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    {alan.icon}
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{alan.baslik}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{alan.aciklama}</p>
+                    <div className="flex items-center justify-center mt-auto text-blue-600 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      <span className="mr-2 font-medium">Detaylı Bilgi</span>
+                      <FaArrowRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
+      
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={showModal} 
+        onClose={() => setShowModal(false)} 
+        title="Hukuki Danışmanlık Talebi"
+        description="Ücretsiz ilk görüşme için size nasıl ulaşalım?"
+      />
     </div>
   );
 };

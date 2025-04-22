@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { FaGraduationCap, FaUniversity, FaBalanceScale, FaBuilding, FaQuoteLeft } from 'react-icons/fa';
+import { FaGraduationCap, FaUniversity, FaBalanceScale, FaBuilding, FaQuoteLeft, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import ContactModal from './ContactModal';
 
 const AboutMe = () => {
+  // Modal durumu için state
+  const [showModal, setShowModal] = useState(false);
+  
   // Animasyon varyantları
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -143,9 +148,20 @@ const AboutMe = () => {
             >
               <h3 className="text-xl font-semibold mb-2">Ücretsiz İlk Görüşme</h3>
               <p className="mb-4">Hukuki sorununuzu değerlendirmek için randevu alın</p>
-              <button className="bg-white text-blue-700 px-6 py-2 rounded-md font-medium hover:bg-blue-50 transition-colors">
-                Randevu Al
-              </button>
+              <div className="space-y-2">
+                <button 
+                  onClick={() => setShowModal(true)} 
+                  className="bg-white text-blue-700 px-6 py-2 rounded-md font-medium hover:bg-blue-50 transition-colors w-full flex items-center justify-center"
+                >
+                  <FaPhone className="mr-2" /> Randevu Al
+                </button>
+                <Link 
+                  to="/iletisim" 
+                  className="bg-blue-50 text-blue-700 px-6 py-2 rounded-md font-medium hover:bg-blue-100 transition-colors w-full flex items-center justify-center"
+                >
+                  <FaEnvelope className="mr-2" /> İletişim Formu
+                </Link>
+              </div>
             </motion.div>
           </motion.div>
           
@@ -233,6 +249,14 @@ const AboutMe = () => {
           </motion.p>
         </motion.div>
       </motion.div>
+      
+      {/* Modal */}
+      <ContactModal 
+        isOpen={showModal} 
+        onClose={() => setShowModal(false)} 
+        title="Randevu Talebi"
+        description="Ücretsiz ilk görüşme talebiniz için size nasıl ulaşalım?"
+      />
     </section>
   );
 };
