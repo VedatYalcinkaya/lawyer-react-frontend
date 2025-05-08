@@ -372,7 +372,7 @@ const workAreasData = {
     hizmetler: [
       {
         title: "Mal Rejimi Davası",
-        description: "Boşanma veya evliliğin iptali durumlarında mal rejiminin tasfiyesi ve hakkaniyetli paylaşım için hukuki destek sağlıyoruz.",
+        description: "Boşanma veya ölüm durumlarında mal rejiminin tasfiyesi ve hakkaniyetli paylaşım için hukuki destek sağlıyoruz.",
       },
       {
         title: "Katılma Alacağı Hesaplaması",
@@ -389,11 +389,14 @@ const workAreasData = {
       {
         title: "Aile Malları Ortaklığı",
         description: "Aile malları ortaklığı rejiminin kurulması, işletilmesi ve tasfiyesi konularında hukuki danışmanlık ve dava takibi hizmetleri sunuyoruz.",
+      },
+      {
+        title: "Ziynet Eşyalarının iadesi",
+        description: "Düğünde veya nişanda takılan ve evlilik sırasında kullanılan veya harcanan altın vb. ziynet eşyalarının iadesi konularında hukuki danışmanlık ve dava takibi hizmetleri sunuyoruz.",
       }
     ],
     yaklasim: [
       "Mal varlığı haklarının korunmasında hassas ve detaylı yaklaşım",
-      "Mali değerlerin doğru tespiti için uzman bilirkişi desteği",
       "Adil paylaşım ilkesini gözeten hukuki danışmanlık",
       "Her aile yapısına özel çözümler sunan esnek stratejiler"
     ],
@@ -404,7 +407,7 @@ const workAreasData = {
       },
       {
         soru: "Miras yoluyla edinilen mallar boşanmada paylaşılır mı?",
-        cevap: "Miras yoluyla edinilen mallar kişisel mal kapsamında değerlendirilir ve edinilmiş mallara katılma rejiminde paylaşıma tabi değildir. Ancak bu malların evlilik süresince değer artışından kaynaklanan katkı payı talep edilebilir.",
+        cevap: "Miras yoluyla edinilen mallar kişisel mal kapsamında değerlendirilir ve edinilmiş mallara katılma rejiminde paylaşıma tabi değildir. Ancak bu mallara edinilmiş mallardan veya diğer eşin kişisel mallarından yapılan katkılar geri istenebilir.",
       },
       {
         soru: "Mal rejimi sözleşmesi nasıl yapılır?",
@@ -451,7 +454,7 @@ const workAreasData = {
     sikSorulanSorular: [
       {
         soru: "Kira artış oranı ne kadar olabilir?",
-        cevap: "Kira artış oranı, kira sözleşmesinde belirtilmişse bu oran üzerinden (TÜFE'nin altında olmak kaydıyla), belirtilmemişse Türkiye İstatistik Kurumu tarafından açıklanan Tüketici Fiyat Endeksi (TÜFE) on iki aylık ortalamalara göre değişim oranını geçmeyecek şekilde uygulanır.",
+        cevap: "Kira artış oranı, kira sözleşmesinde belirtilmişse bu oran üzerinden (TÜFE'nin altında olmak kaydıyla), TÜFE'nin üzerinde oran belirlenmişse Türkiye İstatistik Kurumu tarafından açıklanan Tüketici Fiyat Endeksi (TÜFE) on iki aylık ortalamalara göre değişim oranını geçmeyecek şekilde uygulanır.",
       },
       {
         soru: "Ev sahibi hangi durumlarda tahliye davası açabilir?",
@@ -488,10 +491,10 @@ const workAreasData = {
         title: "Miras Reddi ve Mirasın Resmî Tasfiyesi",
         description: "Mirasın reddi işlemleri, mirasın resmî tasfiyesi talebi ve mirasçılık belgesi çıkarılması konularında hukuki danışmanlık hizmetleri sunuyoruz.",
       },
-      {
-        title: "Uluslararası Miras Davaları",
-        description: "Yabancılık unsuru içeren miras uyuşmazlıklarında uygulanacak hukukun belirlenmesi ve sınır ötesi miras paylaşımı konularında uzman hukuki destek veriyoruz.",
-      }
+     {
+       title: "Muris Muvazaası",
+       description: "Miras bırakan kişinin, diğer mirasçılara haksız kazanç sağlamak için yapmış olduğu işlemlerin, mirasçıların kendilerine haksız kazanç sağlamış olduğu görülürse, mirasçıların bu işlemleri iptal etmesi için hukuki destek sağlıyoruz.",
+     }
     ],
     yaklasim: [
       "Aile bağlarını koruyarak adil miras dağılımını sağlayan uzlaşmacı yaklaşım",
@@ -532,16 +535,12 @@ const workAreasData = {
         description: "Borçlunun malvarlığı üzerine haciz konulması, haciz uygulaması ve hacizli malların satışı konularında hukuki danışmanlık ve takip hizmetleri veriyoruz.",
       },
       {
-        title: "İflas Takibi ve Yönetimi",
-        description: "İflas takiplerinin başlatılması, iflas masasının yönetimi ve alacaklılar toplantılarının düzenlenmesi konularında uzman hukuki destek sağlıyoruz.",
+        title: "Borçlu Vekilliği",
+        description: "Borçlu durumunda bulunulan icra takiplerinde, borçlu haklarının korunması için hukuki destek sağlıyoruz.",
       },
       {
-        title: "Konkordato ve Yeniden Yapılandırma",
-        description: "Finansal zorluktaki şirketler için konkordato başvurusu, yeniden yapılandırma ve borç tasfiye süreçlerinde danışmanlık hizmetleri sunuyoruz.",
-      },
-      {
-        title: "Borçtan Kurtulma Yolları",
-        description: "Borçlular için hukuki haklarını koruma, borca itiraz ve borçtan kurtulma stratejileri konularında uzman hukuki danışmanlık hizmetleri veriyoruz.",
+        title: "İstihkak Davaları",
+        description: "Başkasının borçlu olduğu icra takiplerinde, sizin mallarınızın haczedilmesi durumunda, hacizlerin kaldırılması içim hukuki destek sağlıyoruz.",
       }
     ],
     yaklasim: [
@@ -558,10 +557,6 @@ const workAreasData = {
       {
         soru: "İcra takibine itiraz nasıl yapılır?",
         cevap: "Borçlu, ödeme emrinin tebliğinden itibaren 7 gün içinde borca kısmen veya tamamen itiraz edebilir. İtiraz yazılı veya sözlü olarak icra dairesine yapılır. İtiraz üzerine takip durur ve alacaklının takibe devam edebilmesi için itirazın kaldırılması veya iptali davası açması gerekir.",
-      },
-      {
-        soru: "Konkordato nedir ve nasıl başvurulur?",
-        cevap: "Konkordato, borçlarını ödeyemeyen veya ödeyememe tehlikesi altında olan borçluların, alacaklılarla anlaşarak borçlarını yeniden yapılandırmasını sağlayan bir iyileştirme yöntemidir. Konkordato için borçlu, bağlı olduğu asliye ticaret mahkemesine başvurur ve mahkeme geçici mühlet kararı verebilir. Bu süre içinde borçlu aleyhine icra takibi yapılamaz.",
       }
     ],
     avukatYorumu: "İcra ve iflas hukuku alanında, alacaklıların haklarını korurken borçluların da ekonomik varlıklarını sürdürebilmelerini sağlayacak dengeli ve etik çözümler üretiyoruz."

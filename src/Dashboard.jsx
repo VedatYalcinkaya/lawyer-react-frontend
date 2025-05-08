@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Outlet } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import ContactPage from './pages/ContactPage'
 import WorkAreaPage from './pages/WorkAreaPage'
@@ -11,6 +11,9 @@ import MirasLawPage from './pages/MirasLawPage'
 import IcraIflasLawPage from './pages/IcraIflasLawPage'
 import Navbar from './components/Navbar'
 import { FlipWordsDemo } from './components/FlipWordsDemo'
+import ArticlesPage from './pages/ArticlesPage'
+import BlogDetailPage from './pages/BlogDetailPage'
+import NotFound from './pages/NotFound'
 
 const Dashboard = () => {
   const location = useLocation();
@@ -41,19 +44,23 @@ const Dashboard = () => {
       <main className="relative z-10 w-full flex-grow pt-20">
         {/* İçerik konteyneri (padding ile) - Navbar ve Footer gibi */}
         <div className="w-full px-3 sm:px-6 lg:px-8">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="ui-try" element={<FlipWordsDemo />} />
-            <Route path="/hakkimizda" element={<div className="py-8">Hakkımızda Sayfası</div>} />
-            <Route path="/aile-hukuku" element={<FamilyLawPage />} />
-            <Route path="/ceza-hukuku" element={<CriminalLawPage />} />
-            <Route path="/mal-rejimi-hukuku" element={<MalRejimiLawPage />} />
-            <Route path="/kira-hukuku" element={<KiraLawPage />} />
-            <Route path="/miras-hukuku" element={<MirasLawPage />} />
-            <Route path="/icra-iflas-hukuku" element={<IcraIflasLawPage />} />
-            <Route path="/makaleler" element={<div className="py-8">Makaleler Sayfası</div>} />
-            <Route path="/iletisim" element={<ContactPage />} />
-          </Routes>
+          <div className="max-w-screen-xl mx-auto">
+            <Routes>
+              <Route index element={<HomePage />} />
+              <Route path="ui-try" element={<FlipWordsDemo />} />
+              <Route path="hakkimizda" element={<div className="py-8">Hakkımızda Sayfası</div>} />
+              <Route path="aile-hukuku" element={<FamilyLawPage />} />
+              <Route path="ceza-hukuku" element={<CriminalLawPage />} />
+              <Route path="mal-rejimi-hukuku" element={<MalRejimiLawPage />} />
+              <Route path="kira-hukuku" element={<KiraLawPage />} />
+              <Route path="miras-hukuku" element={<MirasLawPage />} />
+              <Route path="icra-iflas-hukuku" element={<IcraIflasLawPage />} />
+              <Route path="makaleler" element={<ArticlesPage />} />
+              <Route path="makale/:slug" element={<BlogDetailPage />} />
+              <Route path="iletisim" element={<ContactPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </div>
       </main>
     </div>

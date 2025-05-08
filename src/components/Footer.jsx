@@ -60,20 +60,6 @@ const Footer = () => {
               <p className="text-gray-300 mt-4 text-sm leading-relaxed">
                 Profesyonel hukuki danışmanlık ve dava takibi hizmetleriyle müvekkillerime kapsamlı destek sunuyorum.
               </p>
-              <div className="flex space-x-4 pt-4">
-                <a href="https://github.com/emreokur" target="_blank" rel="noopener noreferrer" 
-                  className="bg-koyu-mavi p-2 rounded-full hover:bg-turkuaz transition-all duration-300 transform hover:-translate-y-1">
-                  <FaGithub className="text-white text-xl" />
-                </a>
-                <a href="https://linkedin.com/in/emreokur" target="_blank" rel="noopener noreferrer" 
-                  className="bg-koyu-mavi p-2 rounded-full hover:bg-turkuaz transition-all duration-300 transform hover:-translate-y-1">
-                  <FaLinkedin className="text-white text-xl" />
-                </a>
-                <a href="mailto:contact@emreokur.com" 
-                  className="bg-koyu-mavi p-2 rounded-full hover:bg-turkuaz transition-all duration-300 transform hover:-translate-y-1">
-                  <FaEnvelope className="text-white text-xl" />
-                </a>
-              </div>
             </div>
 
             {/* İletişim bilgileri */}
@@ -84,19 +70,36 @@ const Footer = () => {
                   <div className="bg-koyu-mavi p-2 rounded-full group-hover:bg-turkuaz transition-colors duration-300 flex-shrink-0">
                     <FaMapMarkerAlt className="text-acik-mavi group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <span className="text-sm text-gray-300">Merkez Mah., Atatürk Cad. No:123 Kat:5 Daire:10, Kocaeli</span>
+                  <a 
+                    href="https://maps.google.com/?q=Altındağ+Mahallesi+Güllük+Caddesi+No:73/1+Muratpaşa+Antalya+Türkiye" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-sm text-gray-300 hover:text-turkuaz transition-colors duration-300"
+                  >
+                    Altındağ Mah. Güllük Cad. No:73/1, Muratpaşa/Antalya
+                  </a>
                 </li>
                 <li className="flex items-center space-x-3 group">
                   <div className="bg-koyu-mavi p-2 rounded-full group-hover:bg-turkuaz transition-colors duration-300 flex-shrink-0">
                     <FaPhone className="text-acik-mavi group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <span className="text-sm text-gray-300">+90 555 123 45 67</span>
+                  <a 
+                    href="tel:+90369151144" 
+                    className="text-sm text-gray-300 hover:text-turkuaz transition-colors duration-300"
+                  >
+                    +90 36 915 11 44
+                  </a>
                 </li>
                 <li className="flex items-center space-x-3 group">
                   <div className="bg-koyu-mavi p-2 rounded-full group-hover:bg-turkuaz transition-colors duration-300 flex-shrink-0">
                     <FaEnvelope className="text-acik-mavi group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <span className="text-sm text-gray-300">contact@emreokur.com</span>
+                  <a 
+                    href="mailto:emreokur@antalya.av.tr" 
+                    className="text-sm text-gray-300 hover:text-turkuaz transition-colors duration-300"
+                  >
+                    emreokur@antalya.av.tr
+                  </a>
                 </li>
               </ul>
             </div>
@@ -194,12 +197,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
-      {/* WhatsApp butonu */}
-      <a href="https://wa.me/905551234567" target="_blank" rel="noopener noreferrer" 
-         className="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 hover:scale-110 transition-all duration-300 z-50">
-        <FaWhatsapp className="text-2xl" />
-      </a>
     </footer>
   );
 };

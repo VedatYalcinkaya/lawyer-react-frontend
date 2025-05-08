@@ -32,42 +32,37 @@ const AboutMe = () => {
   // Eğitim ve Kariyer Zaman Çizelgesi
   const timelineItems = [
     {
-      year: "2010",
+      year: "2016",
       title: "Kocaeli Üniversitesi Hukuk Fakültesi",
-      description: "Lisans eğitimimi başarıyla tamamladım",
-      icon: <FaUniversity className="text-blue-600"/>
+      description: "Hukuk fakültesinde lisans eğitimime başladım",
+      icon: <FaUniversity className="text-blue-600" />
     },
     {
-      year: "2011",
-      title: "Avukatlık Ruhsatı",
-      description: "Kocaeli Barosu'na kayıtlı olarak avukatlık yapmaya başladım",
-      icon: <FaBalanceScale className="text-blue-600"/>
+      year: "2020",
+      title: "Mezuniyet",
+      description: "Kocaeli Üniversitesi Hukuk Fakültesi'nden mezun oldum",
+      icon: <FaGraduationCap className="text-blue-600" />
     },
     {
-      year: "2012 - 2015",
-      title: "Hukuk Bürosu Deneyimi",
-      description: "Prestijli bir hukuk bürosunda çalışarak mesleki tecrübe kazandım",
-      icon: <FaBuilding className="text-blue-600"/>
-    },
-    {
-      year: "2015",
-      title: "Kendi Hukuk Büromu Kurdum",
-      description: "Bağımsız avukat olarak hukuki danışmanlık hizmetleri vermeye başladım",
-      icon: <FaBalanceScale className="text-blue-600"/>
-    },
-    {
-      year: "2018",
-      title: "Ticaret Hukuku Uzmanlığı",
-      description: "Ticaret hukuku alanında uzmanlaşma eğitimimi tamamladım",
-      icon: <FaGraduationCap className="text-blue-600"/>
+      year: "2020 - 2021",
+      title: "Avukatlık Stajı",
+      description: "Avukatlık stajımı başarıyla tamamladım",
+      icon: <FaBalanceScale className="text-blue-600" />
     },
     {
       year: "2022",
-      title: "Aile Hukuku Uzmanlığı",
-      description: "Aile ve miras hukuku alanlarında uzmanlık eğitimimi tamamladım",
-      icon: <FaGraduationCap className="text-blue-600"/>
+      title: "Avukatlık Ruhsatı",
+      description: "Avukatlık ruhsatımı aldım ve mesleki hayatıma başladım",
+      icon: <FaBalanceScale className="text-blue-600" />
+    },
+    {
+      year: "2022",
+      title: "Boşanma ve Mal Rejimi Tasfiyesi Eğitimi",
+      description: "Boşanma ve mal rejimi tasfiyesi konularında profesyonel eğitim aldım",
+      icon: <FaGraduationCap className="text-blue-600" />
     }
   ];
+  
 
   return (
     <section id="hakkimda" className="w-full bg-white py-24 px-4 md:px-10 relative">
@@ -75,7 +70,7 @@ const AboutMe = () => {
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
       
       <motion.div 
-        className="max-w-7xl mx-auto"
+        className="max-w-screen-xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -126,7 +121,7 @@ const AboutMe = () => {
               <ul className="list-disc list-inside space-y-2 text-gray-700 pl-2">
                 <li className="flex items-center">
                   <span className="h-2 w-2 bg-blue-500 rounded-full mr-2"></span>
-                  Kocaeli Barosu (2011 - Günümüz)
+                  Antalya Barosu (2022 - Günümüz)
                 </li>
                 <li className="flex items-center">
                   <span className="h-2 w-2 bg-blue-500 rounded-full mr-2"></span>
@@ -136,8 +131,8 @@ const AboutMe = () => {
               
               <div className="mt-6 pt-4 border-t border-blue-200">
                 <h4 className="font-medium text-gray-800 mb-2">İletişim</h4>
-                <a href="mailto:info@emreokur.av.tr" className="text-blue-600 hover:underline block">info@emreokur.av.tr</a>
-                <a href="tel:+905551234567" className="text-blue-600 hover:underline block">+90 555 123 45 67</a>
+                <a href="mailto:emreokur@antalya.av.tr" className="text-blue-600 hover:underline block">emreokur@antalya.av.tr</a>
+                <a href="tel:+905369151144" className="text-blue-600 hover:underline block">+90 36 915 11 44</a>
               </div>
             </motion.div>
             
@@ -146,7 +141,7 @@ const AboutMe = () => {
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <h3 className="text-xl font-semibold mb-2">Ücretsiz İlk Görüşme</h3>
+              <h3 className="text-xl font-semibold mb-2">İlk Görüşme</h3>
               <p className="mb-4">Hukuki sorununuzu değerlendirmek için randevu alın</p>
               <div className="space-y-2">
                 <button 
@@ -255,7 +250,7 @@ const AboutMe = () => {
         isOpen={showModal} 
         onClose={() => setShowModal(false)} 
         title="Randevu Talebi"
-        description="Ücretsiz ilk görüşme talebiniz için size nasıl ulaşalım?"
+        description="İlk görüşme talebiniz için size nasıl ulaşalım?"
       />
     </section>
   );

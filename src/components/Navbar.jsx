@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import logo from "../assets/react.svg";
+import logo from "../assets/logos/av-logo-beyaz.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -126,79 +126,95 @@ const Navbar = () => {
       <nav className={`fixed top-0 left-0 right-0 z-20 w-full transition-all duration-300 ease-in-out ${
         scrolled ? "bg-koyu-mavi shadow-lg" : "bg-koyu-mavi/90 backdrop-blur-sm"
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Logo ve Başlık */}
+          {/* Logo ve Başlık */}
             <div className="flex items-center space-x-3">
               <div 
                 onClick={() => handleNavigation('/')}
                 className="flex-shrink-0 transform hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer"
               >
-                <img
+            <img
                   className="h-16 w-auto"
-                  src={logo}
-                  alt="Av. Emre Okur Logo"
-                />
+              src={logo}
+              alt="Av. Emre Okur Logo"
+            />
               </div>
               <div className="hidden md:block">
                 <span className="text-2xl font-josefin font-bold text-white">
-                  Av. Emre Okur
-                </span>
-              </div>
+                Av. Emre Okur
+              </span>
             </div>
+          </div>
 
             {/* Navigasyon Linkleri - Masaüstü */}
             <div className="hidden md:flex items-center space-x-8">
               <NavLink to="/" active={location.pathname === '/'}>
-                Ana Sayfa
+              Ana Sayfa
               </NavLink>
               <NavLink to="/" onClick={scrollToAboutSection}>
-                Hakkımızda
+              Hakkımızda
               </NavLink>
-              <div
+            <div
                 ref={dropdownRef}
                 className="relative group"
-              >
-                <button 
+            >
+              <button 
                   onClick={handleDropdownToggle}
                   onMouseEnter={() => setDropdownOpen(true)}
                   className="group relative inline-flex items-center px-1 py-2 text-base font-medium text-acik-mavi hover:text-white transition-colors duration-300 ease-in-out"
-                >
+              >
                   <span>Uzmanlık Alanları</span>
+                  <svg className="ml-1 w-4 h-4 transition-transform duration-200 ease-in-out" 
+                       fill="none" 
+                       stroke="currentColor" 
+                       viewBox="0 0 24 24" 
+                       xmlns="http://www.w3.org/2000/svg"
+                       style={{ transform: dropdownOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-turkuaz to-acik-mavi group-hover:w-full transition-all duration-300 ease-in-out"></span>
-                </button>
-                <div
+              </button>
+              <div
                   onMouseLeave={() => setDropdownOpen(false)}
-                  className={`absolute left-0 mt-0 pt-2 w-56 origin-top-left transform transition-all duration-200 ease-in-out ${
+                  className={`absolute left-0 mt-0 pt-2 w-64 origin-top-left transform transition-all duration-200 ease-in-out ${
                     dropdownOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"
                   }`}
                 >
-                  <div className="bg-white rounded-md shadow-lg overflow-hidden">
-                    {expertiseAreas.map((area) => (
-                      <Link
-                        key={area.id}
-                        to={area.path}
-                        onClick={() => {
-                          setDropdownOpen(false);
-                          window.scrollTo(0, 0);
-                        }}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-acik-mavi/10 hover:to-turkuaz/10 hover:text-koyu-mavi transition-colors duration-300 ease-in-out"
-                      >
-                        {area.title}
-                      </Link>
-                    ))}
+                  <div className="bg-white rounded-md shadow-lg overflow-hidden border border-gray-200">
+                    <div className="py-2 px-3 bg-gradient-to-r from-koyu-mavi to-turkuaz text-white font-semibold text-sm">
+                      UZMANLIK ALANLARI
+                    </div>
+                    <div className="py-1">
+                      {expertiseAreas.map((area) => (
+                        <Link
+                          key={area.id}
+                          to={area.path}
+                          onClick={() => {
+                            setDropdownOpen(false);
+                            window.scrollTo(0, 0);
+                          }}
+                          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-acik-mavi/10 hover:to-turkuaz/10 hover:text-koyu-mavi transition-colors duration-200 ease-in-out border-l-2 border-transparent hover:border-koyu-mavi flex items-center"
+                        >
+                          <svg className="w-4 h-4 mr-2 text-turkuaz" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                          </svg>
+                          {area.title}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
               <NavLink to="/makaleler" active={location.pathname === '/makaleler'}>
-                Makaleler
+              Makaleler
               </NavLink>
               <NavLink to="/iletisim" active={location.pathname === '/iletisim'}>
-                İletişim
+              İletişim
               </NavLink>
-            </div>
+          </div>
 
-            {/* Hamburger Menüsü */}
+          {/* Hamburger Menüsü */}
             <div className="md:hidden">
               <button 
                 className="focus:outline-none"
@@ -223,7 +239,7 @@ const Navbar = () => {
                   ></span>
                 </div>
               </button>
-            </div>
+              </div>
           </div>
         </div>
       </nav>
@@ -259,10 +275,10 @@ const Navbar = () => {
               className="p-2 text-gray-500 hover:text-gray-800 focus:outline-none"
             >
               <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor" 
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
                 className="h-6 w-6"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -274,21 +290,21 @@ const Navbar = () => {
           <div className="flex-grow overflow-y-auto px-6 py-4">
             <div className="space-y-2">
               <MobileNavLink 
-                to="/"
+                  to="/"
                 onClick={() => handleNavigation('/')}
                 isActive={location.pathname === '/'}
-              >
-                Ana Sayfa
+                >
+                  Ana Sayfa
               </MobileNavLink>
               
               <MobileNavLink 
-                to="/" 
+                  to="/"
                 onClick={(e) => {
                   scrollToAboutSection(e);
                   closeMobileMenu();
                 }}
-              >
-                Hakkımızda
+                >
+                  Hakkımızda
               </MobileNavLink>
               
               {/* Uzmanlık Alanları Dropdown */}
@@ -315,33 +331,43 @@ const Navbar = () => {
                     mobileDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  {expertiseAreas.map((area) => (
-                    <Link
-                      key={area.id}
-                      to={area.path}
-                      onClick={() => handleNavigation(area.path)}
-                      className="flex pl-8 pr-4 py-2 text-sm text-gray-600 hover:text-koyu-mavi hover:bg-acik-mavi/10 rounded-md transition-colors duration-200"
-                    >
-                      {area.title}
-                    </Link>
-                  ))}
+                  <div className="bg-gradient-to-r from-koyu-mavi to-turkuaz rounded-t-md">
+                    <div className="py-2 px-4 text-white text-sm font-semibold">
+                      UZMANLIK ALANLARI
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 rounded-b-md py-2 border border-gray-100">
+                    {expertiseAreas.map((area) => (
+                      <Link
+                        key={area.id}
+                        to={area.path}
+                        onClick={() => handleNavigation(area.path)}
+                        className="flex items-center pl-6 pr-4 py-2.5 text-sm text-gray-700 hover:text-koyu-mavi hover:bg-acik-mavi/10 transition-colors duration-200 border-l-2 border-transparent hover:border-koyu-mavi"
+                      >
+                        <svg className="w-4 h-4 mr-2 text-turkuaz" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                        {area.title}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
               
               <MobileNavLink 
-                to="/makaleler"
+                  to="/makaleler"
                 onClick={() => handleNavigation('/makaleler')}
                 isActive={location.pathname === '/makaleler'}
-              >
-                Makaleler
+                >
+                  Makaleler
               </MobileNavLink>
               
               <MobileNavLink 
-                to="/iletisim"
+                  to="/iletisim"
                 onClick={() => handleNavigation('/iletisim')}
                 isActive={location.pathname === '/iletisim'}
-              >
-                İletişim
+                >
+                  İletişim
               </MobileNavLink>
             </div>
           </div>
@@ -353,13 +379,13 @@ const Navbar = () => {
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                 </svg>
-                <span>+90 (512) 345 6789</span>
+                <span>+90 (536) 915 11 44</span>
               </a>
-              <a href="mailto:info@emreokur.av.tr" className="flex items-center text-gray-600 hover:text-koyu-mavi py-1">
+              <a href="mailto:emreokur@antalya.av.tr" className="flex items-center text-gray-600 hover:text-koyu-mavi py-1">
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
-                <span>info@emreokur.av.tr</span>
+                <span>emreokur@antalya.av.tr</span>
               </a>
             </div>
             <p className="mt-4 text-sm text-center text-gray-500">

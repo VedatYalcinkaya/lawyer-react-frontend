@@ -91,10 +91,10 @@ const ContactPage = () => {
               Görüşme talebiniz için telefonla arayabilir veya e-posta gönderebilirsiniz. Randevular en az 2 iş günü öncesinden planlanmalıdır.
             </p>
             <a 
-              href="mailto:randevu@emreokur.com" 
-              className="inline-block text-turkuaz hover:text-koyu-mavi font-medium transition-colors"
+              href="mailto:emreokur@antalya.av.tr" 
+              className="inline-block text-turkuaz hover:text-koyu-mavi font-medium transition-colors duration-300"
             >
-              randevu@emreokur.com
+              emreokur@antalya.av.tr
             </a>
           </motion.div>
 
@@ -112,10 +112,6 @@ const ContactPage = () => {
               <li className="flex justify-between">
                 <span>Pazartesi - Cuma:</span>
                 <span className="font-medium">09:00 - 18:00</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Cumartesi:</span>
-                <span className="font-medium">10:00 - 14:00</span>
               </li>
               <li className="flex justify-between">
                 <span>Pazar:</span>
@@ -137,7 +133,12 @@ const ContactPage = () => {
             <p className="text-gray-600 mb-4">
               Mesai saatleri dışında acil durumlarda aşağıdaki numaradan bize ulaşabilirsiniz. Lütfen sadece gerçek acil durumlar için kullanınız.
             </p>
-            <p className="text-koyu-mavi font-bold">+90 (532) 123 45 67</p>
+            <a 
+              href="tel:+905369151144" 
+              className="text-koyu-mavi font-bold hover:text-turkuaz transition-colors duration-300"
+            >
+              +90 (536) 915 11 44
+            </a>
           </motion.div>
         </div>
       </motion.div>

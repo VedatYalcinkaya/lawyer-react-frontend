@@ -36,7 +36,7 @@ const Hero = () => {
     },
     { 
       baslik: "Mal Rejimi Hukuku", 
-      aciklama: "Edinilmiş mallara katılma ve mal paylaşımı konularında danışmanlık",
+      aciklama: "Boşanma halinde mal rejiminin tasfiyesi, edinilmiş mallara katılma ve mal paylaşımı konularında danışmanlık",
       icon: <FaHandHoldingUsd className="w-10 h-10 mb-4 text-blue-600" />,
       link: "/mal-rejimi-hukuku"
     },
@@ -48,7 +48,7 @@ const Hero = () => {
     },
     { 
       baslik: "Miras Hukuku", 
-      aciklama: "Vasiyetname, miras paylaşımı ve veraset konularında danışmanlık",
+      aciklama: "Vasiyetname, miras paylaşımı, mirastan mal kaçırma ve veraset konularında danışmanlık",
       icon: <FaBook className="w-10 h-10 mb-4 text-blue-600" />,
       link: "/miras-hukuku"
     },
@@ -62,7 +62,7 @@ const Hero = () => {
 
   return (
     <div className="min-h-screen py-10">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-screen-xl mx-auto">
         {/* Sol Taraf - Metin İçeriği */}
         <div className="w-full lg:w-1/2 text-center lg:text-left">
           <motion.div 
@@ -71,8 +71,13 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="flex items-center justify-center lg:justify-start mb-6"
           >
-            <img src={AvLogo} alt="Av. Emre Okur Logo" className="w-16 h-16 mr-4" />
-            <h3 className="text-2xl font-semibold text-gray-800">Av. Emre Okur</h3>
+            <img 
+              src={AvLogo} 
+              alt="Av. Emre Okur Logo" 
+              className="w-26 h-26 mr-4"
+              loading="eager"
+            />
+            <h3 className="text-4xl font-semibold text-gray-800">Av. Emre Okur</h3>
           </motion.div>
           
           <motion.h1
@@ -140,11 +145,11 @@ const Hero = () => {
                 <Link 
                   to={alan.link}
                   className="block bg-white shadow-lg p-6 rounded-xl transition-all duration-300 flex flex-col items-center text-center border border-gray-100 h-full relative group overflow-hidden hover:shadow-xl hover:border-blue-200"
-                >
+              >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="relative z-10">
-                    {alan.icon}
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{alan.baslik}</h3>
+                {alan.icon}
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{alan.baslik}</h3>
                     <p className="text-gray-600 text-sm mb-4">{alan.aciklama}</p>
                     <div className="flex items-center justify-center mt-auto text-blue-600 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                       <span className="mr-2 font-medium">Detaylı Bilgi</span>
@@ -163,7 +168,7 @@ const Hero = () => {
         isOpen={showModal} 
         onClose={() => setShowModal(false)} 
         title="Hukuki Danışmanlık Talebi"
-        description="Ücretsiz ilk görüşme için size nasıl ulaşalım?"
+        description="İlk görüşme için size nasıl ulaşalım?"
       />
     </div>
   );

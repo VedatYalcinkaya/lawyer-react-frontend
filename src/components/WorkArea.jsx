@@ -21,10 +21,10 @@ const WorkArea = ({ workAreaData }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-cok-acik-mavi/30">
       {/* Başlık Bölümü */}
-      <motion.div 
+            <motion.div
         className="py-16 bg-gradient-to-r from-acik-mavi/20 to-turkuaz/20 backdrop-blur-sm border-b border-acik-mavi/10"
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,15 +72,15 @@ const WorkArea = ({ workAreaData }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Görsel ve Yaklaşım */}
           <div className="flex flex-col lg:flex-row gap-12 mb-20">
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <img 
-                src={workAreaData.mainImage} 
-                alt={workAreaData.title} 
+              <img
+                src={workAreaData.mainImage}
+                alt={workAreaData.title}
                 className="w-full h-auto rounded-2xl shadow-xl" 
               />
             </motion.div>
@@ -107,8 +107,8 @@ const WorkArea = ({ workAreaData }) => {
                       <div className="flex-shrink-0 mt-1">
                         <div className="bg-gradient-to-r from-koyu-mavi to-turkuaz w-6 h-6 rounded-full flex items-center justify-center">
                           <FiBookOpen className="text-white text-sm" />
-                        </div>
-                      </div>
+          </div>
+        </div>
                       <p className="ml-4 text-gray-700">{item}</p>
                     </motion.li>
                   ))}
@@ -140,29 +140,29 @@ const WorkArea = ({ workAreaData }) => {
           >
             <h2 className="text-3xl font-bold text-koyu-mavi mb-6">Sunduğumuz Hizmetler</h2>
             <div className="h-1 w-16 bg-gradient-to-r from-turkuaz to-acik-mavi rounded-full mb-8"></div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {workAreaData.hizmetler.map((hizmet, index) => (
-                <motion.div 
-                  key={index}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {workAreaData.hizmetler.map((hizmet, index) => (
+              <motion.div
+                key={index}
                   className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                  initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index, duration: 0.5 }}
                 >
                   <div className="flex items-center mb-4">
                     <div className="bg-gradient-to-r from-koyu-mavi to-mavi w-10 h-10 rounded-full flex items-center justify-center mr-3">
                       <FiAward className="text-white" />
-                    </div>
+          </div>
                     <h3 className="text-xl font-semibold text-koyu-mavi">{hizmet.title}</h3>
                   </div>
                   <p className="text-gray-600 mb-4">{hizmet.description}</p>
-                </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
+          </div>
           </motion.div>
-          
-          {/* Sık Sorulan Sorular */}
+
+      {/* Sık Sorulan Sorular */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -170,28 +170,28 @@ const WorkArea = ({ workAreaData }) => {
           >
             <h2 className="text-3xl font-bold text-koyu-mavi mb-6">Sık Sorulan Sorular</h2>
             <div className="h-1 w-16 bg-gradient-to-r from-turkuaz to-acik-mavi rounded-full mb-8"></div>
-            
+
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-              {workAreaData.sikSorulanSorular.map((soru, index) => (
-                <motion.div 
-                  key={index}
+            {workAreaData.sikSorulanSorular.map((soru, index) => (
+              <motion.div
+                key={index}
                   className={`p-6 ${index !== workAreaData.sikSorulanSorular.length - 1 ? 'border-b border-gray-200' : ''}`}
-                  initial={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                >
+              >
                   <h3 className="text-xl font-semibold text-koyu-mavi mb-3 flex items-center">
                     <FiMessageCircle className="mr-2 text-turkuaz" />
-                    {soru.soru}
-                  </h3>
+                  {soru.soru}
+                </h3>
                   <p className="text-gray-600 pl-7">{soru.cevap}</p>
-                </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
+          </div>
           </motion.div>
         </div>
       </div>
-      
+
       {/* İletişim CTA */}
       <motion.div 
         className="bg-gradient-to-r from-koyu-mavi to-mavi py-16 border-t border-koyu-mavi/20"
