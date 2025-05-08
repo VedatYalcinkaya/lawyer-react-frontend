@@ -306,12 +306,22 @@ export const updateBlogWithThumbnail = createAsyncThunk(
       // Backend'in güncelleme isteğinde beklediği alan yapısını doğru şekilde hazırla
       const updateData = { ...blogData };
       
-      // Eksik veya boş thumbnailUrl/imageUrl için kontrol
-      if (!updateData.thumbnailUrl && !updateData.imageUrl) {
-        console.warn('Uyarı: thumbnailUrl ve imageUrl değerleri eksik veya boş!');
-        // Backend veritabanı kısıtlaması için varsayılan değer ekle
-        updateData.thumbnailUrl = updateData.thumbnailUrl || updateData.imageUrl || 'placeholder.jpg';
-        updateData.imageUrl = updateData.imageUrl || updateData.thumbnailUrl || 'placeholder.jpg';
+      // Backend'in tanımadığı imageUrl alanını kaldır
+      if (updateData.imageUrl) {
+        console.log('UpdateBlogRequest sınıfında imageUrl alanı bulunmadığından, bu alan kaldırılıyor');
+        delete updateData.imageUrl;
+      }
+      
+      // Eksik veya boş thumbnailUrl için kontrol
+      if (!updateData.thumbnailUrl) {
+        console.warn('Uyarı: thumbnailUrl değeri eksik veya boş!');
+        // Eğer thumbnail dosyası yüklenecekse, bu normal bir durum
+        if (thumbnailFile) {
+          console.log('Thumbnail dosyası yüklenecek, boş thumbnailUrl normal');
+        } else {
+          // Dosya yoksa ve URL de yoksa varsayılan değer ekle
+          updateData.thumbnailUrl = 'placeholder.jpg';
+        }
       }
       
       // Eğer thumbnail yoksa normal JSON isteği gönder (FormData kullanma)
@@ -338,13 +348,13 @@ export const updateBlogWithThumbnail = createAsyncThunk(
         }
       }
       
-      // Thumbnail varsa FormData kullan
+      // Thumbnail varsa FormData kullan - Backend'in beklediği formatta
       console.log('Thumbnail var, FormData isteği hazırlanıyor...');
       const formData = new FormData();
       
-      // Blog verilerini JSON formatında ekle
+      // Blog verilerini JSON string olarak 'blogData' parametresine ekle
       formData.append('blogData', JSON.stringify(updateData));
-      console.log('blogData formData\'ya JSON olarak eklendi:', updateData);
+      console.log('blogData formData\'ya JSON string olarak eklendi');
       
       // Thumbnail dosyasını ekle
       try {
@@ -354,17 +364,37 @@ export const updateBlogWithThumbnail = createAsyncThunk(
         console.error('Thumbnail eklenirken hata:', thumbnailError);
       }
       
-      // Backend'de update-with-thumbnail endpointi varsa onu kullan
+      // FormData içeriğini debug amaçlı loglama
       try {
-        const response = await api.put(`/blogs/update-with-thumbnail/${id}`, formData);
-        console.log('API yanıtı:', response.data);
+        const formDataEntries = Array.from(formData.entries());
+        console.log('FormData gönderilecek alanlar:', formDataEntries.map(entry => entry[0]));
+      } catch (e) {
+        console.log('FormData içeriği log edilemedi:', e);
+      }
+      
+      // Backend'in beklediği endpoint'e istek at
+      try {
+        console.log(`API isteği gönderiliyor: /blogs/${id}/update-with-thumbnail`);
+        const response = await api.post(`/blogs/${id}/update-with-thumbnail`, formData);
+        console.log('API yanıtı başarılı:', response.data);
         return response.data.data;
       } catch (apiError) {
-        console.error('API update-with-thumbnail isteği sırasında hata, standart endpoint deneniyor:', apiError);
+        console.error('API update-with-thumbnail isteği sırasında hata:', apiError);
+        console.error('Hata detayları:', apiError.response?.data);
         
-        // Alternatif olarak standart endpoint'i dene
-        const fallbackResponse = await api.put(`/blogs/${id}`, formData);
-        return fallbackResponse.data.data;
+        // Daha anlamlı hata mesajları
+        if (apiError.response?.status === 400) {
+          return rejectWithValue(
+            apiError.response?.data?.message || 
+            'Blog güncellenirken bir hata oluştu.'
+          );
+        }
+        
+        if (apiError.response?.status === 500) {
+          return rejectWithValue('Sunucu hatası. Lütfen daha sonra tekrar deneyin.');
+        }
+        
+        throw apiError;
       }
     } catch (error) {
       console.error('Blog güncellenirken hata oluştu:', error);

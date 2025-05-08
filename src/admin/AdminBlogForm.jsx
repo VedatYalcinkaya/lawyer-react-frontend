@@ -367,6 +367,16 @@ const AdminBlogForm = () => {
       setImagePreview(e.target.result);
       setImageUploading(false);
       setThumbnailFile(file);
+      
+      // Yeni resim dosyası ayarlandığında URL değerini temizle
+      // böylece backend'e sadece yeni dosya gönderilir
+      setFormData(prev => ({
+        ...prev,
+        thumbnailUrl: '', // Cloudinary URL'ini temizle
+        imageUrl: ''     // imageUrl'i de temizle
+      }));
+      
+      console.log('Yeni thumbnail seçildi. URL değerleri temizlendi, sadece dosya gönderilecek.');
     };
     reader.onerror = () => {
       toast.error('Resim yüklenirken bir hata oluştu');
@@ -437,15 +447,14 @@ const AdminBlogForm = () => {
         metaDescription: formData.metaDescription,
         metaKeywords: formData.metaKeywords,
         canonicalUrl: formData.canonicalUrl,
-        // Mevcut thumbnail URL'sini ekle - backend bunu bekliyor (null constraint hatası almamak için)
-        thumbnailUrl: formData.thumbnailUrl || '',
+        // Sadece thumbnailUrl alanını gönder, imageUrl alanını kullanma (backend bunu tanımıyor)
+        thumbnailUrl: imagePreview || formData.thumbnailUrl || '',
       };
       
-      // Eğer düzenleme modundaysa, ID'yi ve imageUrl'i ekle
+      // Eğer düzenleme modundaysa, ID'yi ekle
       if (formMode === 'edit' && id) {
         blogData.id = id;
-        // Güncelleme sırasında imageUrl alanı da gönderiliyor (ama yeni oluşturmada gönderilmiyor)
-        blogData.imageUrl = formData.thumbnailUrl || '';
+        // imageUrl alanı backend'de tanımlı değil, ekleme
       }
       
       console.log(`Blog ${formMode === 'create' ? 'oluşturuluyor' : 'güncelleniyor'}:`, { blogData, hasImage: !!thumbnailFile });
